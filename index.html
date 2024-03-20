@@ -122,6 +122,47 @@
     </ul>
   </div>
 
+  <!--Firebase Initialization-->
+  <script src="https://www.gstatic.com/firebasejs/5.6.0/firebase-app.js"></script>
+  <script src="https://www.gstatic.com/firebasejs/5.6.0/firebase-auth.js"></script>
+  <script src="https://www.gstatic.com/firebasejs/5.6.0/firebase-firestore.js"></script>
+
+  <script>
+    // Import the functions you need from the SDKs you need
+    /*   
+    Firebase 10
+     import { initializeApp } from "https://www.gstatic.com/firebasejs/10.9.0/firebase-app.js";
+       import { getAuth } from "https://www.gstatic.com/firebasejs/10.9.0/firebase-auth.js";
+       import { getFirestore } from "https://www.gstatic.com/firebasejs/10.9.0/firebase-firestore.js";
+   */
+
+    // TODO: Add SDKs for Firebase products that you want to use
+    // https://firebase.google.com/docs/web/setup#available-libraries
+
+    // Your web app's Firebase configuration
+    // For Firebase JS SDK v7.20.0 and later, measurementId is optional
+    var config = {
+      apiKey: "AIzaSyASG9MFGN_dRvK3R5TyxGBYsweJ2I19-jw",
+      authDomain: "web-traffice-commerce.firebaseapp.com",
+      projectId: "web-traffice-commerce",
+      storageBucket: "web-traffice-commerce.appspot.com",
+      messagingSenderId: "900672300928",
+      appId: "1:900672300928:web:9d15824edf8d0ec2b98365",
+      measurementId: "G-DE70PGGRQZ"
+    };
+
+    // Initialize Firebase
+    firebase.initializeApp(config);
+
+    //Make auth and firestore reference
+    const auth = firebase.auth();
+    const db = firebase.firestore()
+
+    //make auth and firestore references
+    db.settings({ timestampsInSnapshots: true });
+
+  </script>
+
   <!-- Compiled and minified JavaScript -->
   <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/js/materialize.min.js"></script>
   <script src="scripts/auth.js"></script>
