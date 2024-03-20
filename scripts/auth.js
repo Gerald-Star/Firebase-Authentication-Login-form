@@ -1,25 +1,34 @@
-//get data from firestore collections
-// this takes an ansychronous tasks and returns a callback function
+// ? get data from firestore collections
+// ? this takes an ansychronous tasks and returns a callback function
 
+/*
 db.collection('Catalogues').get().then(snapshot => {
   //console.log(snapshot.docs)
-  setupGuides(snapshot.docs);
-});
+  setupGuides(snapshot.docs); 
+}); // ! to give access only to login user. Pass the db collection inside the onAuthStateChanged
+*/
+
 
 //listen for auth status change to check whether the user is login/logout
 //if the user exists or not - keeping track of the user authentication status
+
+
+// ? this function now changes the user authentication
 auth.onAuthStateChanged(user => {
   if (user) {
-    console.log('user logged in: ', user)
+    db.collection('Catalogues').get().then(snapshot => {
+      //console.log(snapshot.docs)
+      setupGuides(snapshot.docs);
+    });
+
+    // console.log('user logged in: ', user)
   } else {
-    console.log('user logged out')
+    // console.log('user logged out')
+    setupGuides([]); // when the user login can access the das 
+    //? this sets the guideList on the index.js with h5 message
   }
 
 });
-
-
-
-
 
 //Sign up
 //Attach an event listener to the sign-up to listen to every user that signs up
