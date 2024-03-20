@@ -1,3 +1,26 @@
+//get data from firestore collections
+// this takes an ansychronous tasks and returns a callback function
+
+db.collection('Catalogues').get().then(snapshot => {
+  //console.log(snapshot.docs)
+  setupGuides(snapshot.docs);
+});
+
+//listen for auth status change to check whether the user is login/logout
+//if the user exists or not - keeping track of the user authentication status
+auth.onAuthStateChanged(user => {
+  if (user) {
+    console.log('user logged in: ', user)
+  } else {
+    console.log('user logged out')
+  }
+
+});
+
+
+
+
+
 //Sign up
 //Attach an event listener to the sign-up to listen to every user that signs up
 //prevent default action by using e.preventDefault to avoid refreshing the page
@@ -14,7 +37,7 @@ signupForm.addEventListener('submit', (e) => {
   // this is asynchronous that returns a promise.
   // the response to this case will be the users credentials token
   auth.createUserWithEmailAndPassword(email, password).then(cred => {
-    console.log(cred.user);
+    // not needed console.log(cred.user);
 
     //set modal open and close after signup
     const modal = document.querySelector('#modal-signup');
@@ -29,9 +52,10 @@ signupForm.addEventListener('submit', (e) => {
 const logout = document.querySelector('#logout');
 logout.addEventListener('click', (e) => {
   e.preventDefault();
-  auth.signOut().then(() => {
-    console.log('user signed out')
-  })
+  auth.signOut()
+  //.then(() => { not needed again to be tracked on top whenever the auth changes
+  // console.log('user signed out')
+  //})
 })
 
 //! login

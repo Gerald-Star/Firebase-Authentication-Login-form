@@ -1,3 +1,28 @@
+//After setting the firestore to collect data. Set a function from the DOM
+//to connect the guide
+
+const guideList = document.querySelector('.guides')
+
+//setup guides
+const setupGuides = (data) => {
+  let html = "";
+  data.forEach(doc => {
+    const guide = doc.data();
+
+    const li = `
+      <li>
+        <div class="collapsible-header grey lighten">${guide.title}</div>
+        <div class="collapsible-body white">${guide.content}</div>
+        </li>
+    `;
+    html += li;
+  });
+
+  guideList.innerHTML = html;
+}
+
+
+
 //DOM 
 // setup materialize components
 document.addEventListener('DOMContentLoaded', function () {
